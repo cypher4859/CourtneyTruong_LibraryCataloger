@@ -11,7 +11,7 @@ public class BookDbContext : DbContext
 
     public string DbPath { get; }
 
-    public BookDbContext()
+    public BookDbContext(DbContextOptions<BookDbContext> options) : base(options)
     {
         var folder = Environment.SpecialFolder.LocalApplicationData;
         var path = Environment.GetFolderPath(folder);
