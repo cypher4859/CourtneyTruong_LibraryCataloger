@@ -43,7 +43,13 @@ class Program
 }
 
 
-
+//TODO list 
+//Figure out how to use repository methoods in controller
+//figure out how to create a bootstrap theme
+//Set up homepage to look nicer and create a book form from home page
+//create Library and To Be Read List Pages
+//figure out how to display true/false as yes no for inlibrary and tobereadlist
+//figure out why + sign image is not showing up on Create New Book buttons
 
 
 

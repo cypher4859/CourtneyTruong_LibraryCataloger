@@ -6,7 +6,9 @@ namespace LibraryCataloger.Data
     public class BookEntity
     {
         [Key] public int BookID { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Author { get; set; }
         public string Description { get; set; }
         public string Isbn {  get; set; }
