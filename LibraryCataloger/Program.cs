@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryCataloger;
-//TODO: start with controller step for converting console app to api exercise
+
 class Program
 {
     static void Main(string[] args)
@@ -44,8 +44,11 @@ class Program
 
 
 //TODO list 
+
 //Figure out how to use repository methoods in controller
+//Figure out how to allow isbn to be optional (user may not have isbn for book if they do not own the book yet)
 //figure out how to create a bootstrap theme
+//figure out how pagination in bootstrap
 //Set up homepage to look nicer and create a book form from home page
 //create Library and To Be Read List Pages
 //figure out how to display true/false as yes no for inlibrary and tobereadlist

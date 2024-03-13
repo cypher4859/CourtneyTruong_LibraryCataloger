@@ -28,12 +28,13 @@
 		</th>
 		<th>
 			ISBN
-		</th>				
+		</th>
+		<th></th>
 	</tr>
 	</thead>
 	<tbody>
-		@foreach (var book in Model)
-		{
+			@foreach (var book in Model.OrderBy(book => book.Title))
+			{
 		<tr>
 			<td>
 				@book.Title
@@ -46,6 +47,16 @@
 			</td>
 			<td>
 				@book.Isbn
+			</td>
+			<td>
+				<div class="w-75 btn-group" role="group">
+					<a asp-controller="Book" asp-action="Edit" asp-route-bookId="@book.BookID" class="btn btn-primary mx-2">
+								<i class="bi bi-pencil-square"></i> Edit
+					</a>
+							<a asp-controller="Book" asp-action="Delete" asp-route-bookId="@book.BookID" class="btn btn-danger mx-2">
+								<i class="bi bi-trash3-fill"></i> Delete
+							</a>
+				</div>
 			</td>
 		</tr>
 		}
