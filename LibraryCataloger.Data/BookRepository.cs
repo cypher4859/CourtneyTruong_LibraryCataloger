@@ -23,6 +23,12 @@ namespace LibraryCataloger.Data
             return inLibrary;
         }
 
+        public List<BookEntity> GetToBeReadList()
+        {
+            var toBeReadList = _context.Books.Where(e => e.ToBeReadList).ToList();
+            return toBeReadList;
+		}
+
         public void CreateBook(BookEntity book)
         {
             _context.Books.Add(book);
