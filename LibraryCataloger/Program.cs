@@ -48,9 +48,8 @@ class Program
 //Figure out how to allow isbn to be optional (user may not have isbn for book if they do not own the book yet)
 //figure out how to create a bootstrap theme
 //figure out how pagination in bootstrap
-//Set up homepage to look nicer and create a book form from home page
-//create To Be Read List Page
 //figure out how to display true/false as yes no for inlibrary and tobereadlist
+//implement at least 3 unit tests
 
 
 

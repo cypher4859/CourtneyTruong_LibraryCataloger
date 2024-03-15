@@ -1,4 +1,5 @@
-﻿using LibraryCataloger.Models;
+﻿using LibraryCataloger.Data;
+using LibraryCataloger.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,7 +8,7 @@ namespace LibraryCatalogerWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        private readonly IBookRepository _bookRepository;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -17,7 +18,6 @@ namespace LibraryCatalogerWeb.Controllers
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
