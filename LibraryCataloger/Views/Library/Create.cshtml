@@ -1,0 +1,54 @@
+﻿@model BookEntity
+
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">Create New Book</h2>
+			<hr />
+		</div>
+		<div class="mb-3 row p-1">
+			<label asp-for="Title" class="p-0"></label>
+			<input asp-for="Title" class="form-control" />
+			<span asp-validation-for="Title" class="text-danger"></span>
+		</div>
+		<div class="mb-3 row p-1">
+			<label asp-for="Author" class="p-0"></label>
+			<input asp-for="Author" class="form-control" />
+			<span asp-validation-for="Author" class="text-danger"></span>
+		</div>
+		<div class="mb-3 row p-1">
+			<label asp-for="Description" class="p-0"></label>
+			<input asp-for="Description" class="form-control" />
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
+		<div class="mb-3 row p-1">
+			<label asp-for="Isbn" class="p-0"></label>
+			<input asp-for="Isbn" class="form-control" />
+		</div>
+		<div class="mb-3 row p-1">
+			<label class="p-0">Do you want to add this book to your To Be Read List?</label>
+			<input asp-for="ToBeReadList" type="text" class="form-control" />
+		</div>
+		<div class="mb-3 row p-1">
+			<label class="p-0">Do you own this book?</label>
+			<input asp-for="InLibrary" type="text" class="form-control" />
+		</div>
+
+		<div class="row">
+			<div class="col-6 col-md-3">
+				<button type="submit" class="btn btn-primary form-control">Submit</button>
+			</div>
+			<div class="col-6 col-md-3">
+				<a asp-controller="Book" asp-action="Index" class="btn btn-outline-secondary form-control">
+					Back to List
+				</a>
+			</div>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

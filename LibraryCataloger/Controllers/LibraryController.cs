@@ -1,47 +1,48 @@
-﻿using LibraryCataloger.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using LibraryCataloger.Data;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace LibraryCataloger.Controllers;
-
-public class BookController : Controller
+public class LibraryController : Controller
 {
-    private readonly BookDbContext _dbContext;
-    public BookController(BookDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-    
-    public IActionResult Index()
-    {
-        List<BookEntity> bookList = _dbContext.Books.ToList();
-        return View(bookList);   
-    }
+	private readonly IBookRepository _bookRepository;
+
+	public LibraryController(IBookRepository bookRepository)
+	{
+		_bookRepository = bookRepository;
+	}
+	public IActionResult Index()
+	{
+		var bookList = _bookRepository.GetInLibraryBooks();
+		return View(bookList);
+	}
 
     public IActionResult Create()
     {
         return View();
     }
 
-	[HttpPost]
+    [HttpPost]
     public IActionResult Create(BookEntity book)
-	{
+    {
         if (ModelState.IsValid)
         {
-            _dbContext.Books.Add(book);
-            _dbContext.SaveChanges();
-			TempData["success"] = "Book added successfully";
-			return RedirectToAction("Index");
-		}
+            _bookRepository.CreateBook(book);
+            TempData["success"] = "Book added successfully";
+            return RedirectToAction("Index");
+        }
         return View();
-		}
+    }
 
 	public IActionResult Edit(int? bookId)
 	{
-		if(bookId==null || bookId == 0)
+		if (bookId == null || bookId == 0)
 		{
 			return NotFound();
 		}
-		BookEntity? bookFromDb = _dbContext.Books.Find(bookId);
+		var bookFromDb = _bookRepository.FindBookByID(bookId);
 		if (bookFromDb == null)
 		{
 			return NotFound(bookId);
@@ -54,8 +55,7 @@ public class BookController : Controller
 	{
 		if (ModelState.IsValid)
 		{
-			_dbContext.Books.Update(book);
-			_dbContext.SaveChanges();
+			_bookRepository.UpdateBook(book);
 			TempData["success"] = "Book updated successfully";
 			return RedirectToAction("Index");
 		}
@@ -68,7 +68,7 @@ public class BookController : Controller
 		{
 			return NotFound();
 		}
-		BookEntity? bookFromDb = _dbContext.Books.Find(bookId);
+		BookEntity? bookFromDb = _bookRepository.FindBookByID(bookId);
 		if (bookFromDb == null)
 		{
 			return NotFound(bookId);
@@ -79,17 +79,16 @@ public class BookController : Controller
 	[HttpPost, ActionName("Delete")]
 	public IActionResult DeletePOST(int? bookID)
 	{
-		BookEntity? book = _dbContext.Books.Find(bookID);
+		BookEntity? book = _bookRepository.FindBookByID(bookID);
 		if (book == null)
 		{
 			return NotFound();
 		}
-		_dbContext.Books.Remove(book);
-		_dbContext.SaveChanges();
+		_bookRepository.DeleteBook(book);
 		TempData["success"] = "Book deleted successfully";
 		return RedirectToAction("Index");
-		}
 	}
+}
 
-	
 
+   
