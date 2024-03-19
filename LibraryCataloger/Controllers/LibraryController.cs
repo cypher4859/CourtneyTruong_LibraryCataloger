@@ -15,8 +15,15 @@ public class LibraryController : Controller
 	}
 	public IActionResult Index()
 	{
-		var bookList = _bookRepository.GetInLibraryBooks();
-		return View(bookList);
+		try
+		{
+			var bookList = _bookRepository.GetInLibraryBooks();
+			return View(bookList);
+		}
+		catch (Exception ex)
+		{
+			return View(ex);
+		}
 	}
 
     public IActionResult Create()
