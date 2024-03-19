@@ -21,8 +21,16 @@ namespace LibraryCataloger.Data
         {
             // BUG: Handle when the database doesn't have any books yet.
             // The `.ToList()` fails when there are no books in the library
-            var inLibrary = _context.Books.Where(e => e.InLibrary).ToList();
-            return inLibrary;
+            try
+            {
+                var inLibrary = _context.Books.Where(e => e.InLibrary).ToList();
+                return inLibrary;
+            }
+            catch (Exception ex) 
+            {
+                return null;
+            }
+
         }
 
         public List<BookEntity> GetToBeReadList()

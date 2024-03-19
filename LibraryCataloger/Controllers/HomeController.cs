@@ -8,7 +8,6 @@ namespace LibraryCatalogerWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IBookRepository _bookRepository;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
