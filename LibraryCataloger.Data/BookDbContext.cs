@@ -15,6 +15,11 @@ public class BookDbContext : DbContext
     {
         var folder = Environment.SpecialFolder.LocalApplicationData;
         var path = Environment.GetFolderPath(folder);
+
+        // Good way to do this. Would be interesting to add some logic to handle
+        // whether the DB is is in the Dev/Test/Staging/Production environment.
+        // Should be possible to do so with ConnectionString in `appsettings.json` since
+        // there are usually appsettings.json that corresponds to the environment.
         DbPath = System.IO.Path.Join(path, "Books.db");
     }
 
