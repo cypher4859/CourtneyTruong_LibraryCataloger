@@ -13,6 +13,8 @@ public class BookController : Controller
     
     public IActionResult Index()
     {
+		// BUG: Handle when the database doesn't have any books yet.
+            // The `.ToList()` fails when there are no books in the library
         List<BookEntity> bookList = _dbContext.Books.ToList();
         return View(bookList);   
     }
