@@ -1,10 +1,9 @@
-﻿using LibraryCataloger.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
 
-
+namespace LibraryCataloger.Data;
 public class BookDbContext : DbContext
 {
     public DbSet<BookEntity> Books { get; set; }

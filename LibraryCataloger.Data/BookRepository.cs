@@ -6,63 +6,63 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryCataloger.Data
+namespace LibraryCataloger.Data;
+
+public class BookRepository : IBookRepository
 {
-    public class BookRepository : IBookRepository
+    private readonly BookDbContext _context;
+
+    public BookRepository(BookDbContext context)
     {
-        private readonly BookDbContext _context;
+        _context = context;
+    }
 
-        public BookRepository(BookDbContext context)
+    public List<BookEntity> GetInLibraryBooks()
+    {
+        // BUG: Handle when the database doesn't have any books yet.
+        // The `.ToList()` fails when there are no books in the library
+        try
         {
-            _context = context;
+            var inLibrary = _context.Books.Where(e => e.InLibrary).ToList();
+            return inLibrary;
+        }
+        catch (Exception ex) 
+        {
+            return null;
         }
 
-        public List<BookEntity> GetInLibraryBooks()
-        {
-            // BUG: Handle when the database doesn't have any books yet.
-            // The `.ToList()` fails when there are no books in the library
-            try
-            {
-                var inLibrary = _context.Books.Where(e => e.InLibrary).ToList();
-                return inLibrary;
-            }
-            catch (Exception ex) 
-            {
-                return null;
-            }
+    }
 
-        }
-
-        public List<BookEntity> GetToBeReadList()
-        {
-            // BUG: Handle when the database doesn't have any books yet.
-            // The `.ToList()` fails when there are no books in the ToBeReadList
-            var toBeReadList = _context.Books.Where(e => e.ToBeReadList).ToList();
-            return toBeReadList;
+    public List<BookEntity> GetToBeReadList()
+    {
+        // BUG: Handle when the database doesn't have any books yet.
+        // The `.ToList()` fails when there are no books in the ToBeReadList
+        var toBeReadList = _context.Books.Where(e => e.ToBeReadList).ToList();
+        return toBeReadList;
 		}
 
-        public void CreateBook(BookEntity book)
-        {
-            _context.Books.Add(book);
-            _context.SaveChanges();
-        }
+    public void CreateBook(BookEntity book)
+    {
+        _context.Books.Add(book);
+        _context.SaveChanges();
+    }
 
-        public BookEntity? FindBookByID(int? bookId)
-        {
-           return _context.Books.Find(bookId);
-        }
-            
-        public void UpdateBook(BookEntity book)
-        {
+    public BookEntity? FindBookByID(int? bookId)
+    {
+       return _context.Books.Find(bookId);
+    }
+        
+    public void UpdateBook(BookEntity book)
+    {
 			_context.Books.Update(book);
 			_context.SaveChanges();
 		}
 
-        public void DeleteBook(BookEntity book)
-        {
+    public void DeleteBook(BookEntity book)
+    {
 			_context.Books.Remove(book);
 			_context.SaveChanges();
 		}
-    }
- }
+}
+
 
