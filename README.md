@@ -1,1 +1,3 @@
-# LibraryCataloger
+LibraryCataloger 
+
+LibraryCataloger is my final project for Code:Kentucky's Software Development Bootcamp. The app is a ASP.NET MVC app that uses a Sqlite database with Entity Framework Core. Views for the app are created using Bootstrap. The goal of this app was to create a simple app that a user can use to keep track of their personal book collections as well as keep track of books that they would like to read in the future via a "To Be Read List". A user is able to perform CRUD operations on books in their collection by adding a book to the database, reading list books in the database via "Your Library" and "To Be Read List" pages, updating information on each book and removing books from the database.
