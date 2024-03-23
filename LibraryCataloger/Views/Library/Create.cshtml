@@ -17,12 +17,12 @@
 			<span asp-validation-for="Author" class="text-danger"></span>
 		</div>
 		<div class="mb-3 row p-1">
-			<label asp-for="Description" class="p-0"></label>
+			<label class="p-0">Description (Optional)</label>
 			<input asp-for="Description" class="form-control"/>
 			<span asp-validation-for="Description" class="text-danger"></span>
 		</div>
 		<div class="mb-3 row p-1">
-			<label asp-for="Isbn" class="p-0"></label>
+			<label class="p-0">ISBN (Optional)</label>
 			<input asp-for="Isbn" class="form-control"/>
 		</div>
 		<div class="mb-3 row p-1">
@@ -40,7 +40,7 @@
 			</div>
 			<div class="col-6 col-md-3">
 				<a asp-controller="Library" asp-action="Index" class="btn btn-outline-secondary form-control">
-					Back to List
+					Back to Your Library
 				</a>
 			</div>
 		</div>
