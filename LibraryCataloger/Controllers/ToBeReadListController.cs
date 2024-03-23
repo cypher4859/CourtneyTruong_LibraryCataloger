@@ -15,8 +15,15 @@ public class ToBeReadListController : Controller
 	}
 	public IActionResult Index()
 	{
-		var bookList = _bookRepository.GetToBeReadList();
-		return View(bookList);
+		try
+		{
+			var bookList = _bookRepository.GetToBeReadList();
+			return View(bookList);
+		}
+		catch (Exception ex)
+		{
+			return View(ex);
+		}
 	}
 
 	public IActionResult Create()

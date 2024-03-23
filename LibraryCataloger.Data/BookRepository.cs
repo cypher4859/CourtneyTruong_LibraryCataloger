@@ -11,6 +11,8 @@ namespace LibraryCataloger.Data;
 public class BookRepository : IBookRepository
 {
     private readonly BookDbContext _context;
+    private readonly List<BookEntity> defaultEmptyBookEntities = new List<BookEntity> { };
+
 
     public BookRepository(BookDbContext context)
     {
@@ -28,7 +30,7 @@ public class BookRepository : IBookRepository
         }
         catch (Exception ex) 
         {
-            return null;
+            return defaultEmptyBookEntities;
         }
 
     }
@@ -37,9 +39,16 @@ public class BookRepository : IBookRepository
     {
         // BUG: Handle when the database doesn't have any books yet.
         // The `.ToList()` fails when there are no books in the ToBeReadList
-        var toBeReadList = _context.Books.Where(e => e.ToBeReadList).ToList();
-        return toBeReadList;
-		}
+        try
+        {
+            var toBeReadList = _context.Books.Where(e => e.ToBeReadList).ToList();
+            return toBeReadList;
+        }
+        catch (Exception ex)
+        {
+            return defaultEmptyBookEntities;
+        }
+    }
 
     public void CreateBook(BookEntity book)
     {
