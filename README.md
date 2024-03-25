@@ -7,7 +7,8 @@ To Use, clone repository and follow the instructions below to update the databas
 Before running update the database:
 1. right click on solution
 2. click "open in terminal"
-3. type "dotnet ef database update" and hit enter
+3. type "dotnet tool install --global dotnet-ef --version 8" and hit enter
+4. type "dotnet ef database update" and hit enter
 
 How to Start Application:
 1. Open LibraryCataloger.Sln in Visual Studio

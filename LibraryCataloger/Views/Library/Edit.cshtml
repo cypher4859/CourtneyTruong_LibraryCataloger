@@ -25,30 +25,24 @@
 			<label asp-for="Isbn" class="p-0"></label>
 			<input asp-for="Isbn" class="form-control" />
 		</div>
-		<div class="mb-3 row p-1">
-			<label class="p-0">Do you want to add this book to your To Be Read List?</label>
-			<input asp-for="ToBeReadList" type="text" class="form-control" />
+		<div class="form-check ps-0">
+			<input asp-for="ToBeReadList" type="checkbox" id="flexCheckDefault">
+			<label class="form-check-label" for="flexCheckDefault">Add to To Be Read List</label>
 		</div>
-		<div class="mb-3 row p-1">
-			<label class="p-0">Do you own this book?</label>
-			<input asp-for="InLibrary" type="text" class="form-control" />
+		<div class="form-check ps-0 mb-4">
+			<input asp-for="InLibrary" type="checkbox" id="flexCheckDefault">
+			<label class="form-check-label" for="flexCheckDefault">Add book to Library</label>
 		</div>
-
 		<div class="row">
-			<div class="col-6 col-md-3">
-				<button type="submit" class="btn btn-primary form-control">Update</button>
+			<div class="col-6 col-md-6">
+				<button type="submit" class="btn btn-primary form-control">Submit</button>
 			</div>
-			<div class="col-6 col-md-3">
+			<div class="col-6 col-md-6">
 				<a asp-controller="Library" asp-action="Index" class="btn btn-outline-secondary form-control">
-					Back to Your Library
+					Back to Library
 				</a>
 			</div>
 		</div>
+		</>
 	</div>
 </form>
-
-@section Scripts {
-	@{
-		<partial name="_ValidationScriptsPartial" />
-	}
-}
