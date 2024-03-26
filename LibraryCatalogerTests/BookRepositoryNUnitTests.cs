@@ -15,7 +15,7 @@ namespace LibraryCatalogerTests;
 
 
 [TestFixture]
-public class BookNUnitTests
+public class BookRepositoryNUnitTests
 {
     private readonly Mock<IBookRepository> _bookRepositoryMock;
     
@@ -26,7 +26,7 @@ public class BookNUnitTests
            new BookEntity { BookID = 2, Title = "TestBook2", Author = "TestAuthor", Description = "Test", InLibrary = true, ToBeReadList = true, Isbn = "12345678910" },  
         };
 
-    public BookNUnitTests()
+    public BookRepositoryNUnitTests()
     {
 
        _bookRepositoryMock = new Mock<IBookRepository>();
@@ -82,6 +82,27 @@ public class BookNUnitTests
         _bookRepositoryMock.Object.CreateBook(newbook);
         //Assert
         Assert.That(newbook, Is.TypeOf<BookEntity>());
+    }
+
+    [Test]
+    public void FindBookByID_ShouldReturnValidEntityWithBookIDof2()
+    {
+        //Arrange
+        var bookByID = new BookEntity()
+        {
+            BookID = 2,
+            Title = "Test",
+            Author = "TestAuthor",
+            Description = "Test",
+            ToBeReadList = true,
+            InLibrary = true,
+        };
+
+        //Act
+        _bookRepositoryMock.Setup(u => u.FindBookByID(2)).Returns(bookByID);
+
+        //Assert
+        Assert.That(bookByID.BookID, Is.EqualTo(2));
     }
 
 }
