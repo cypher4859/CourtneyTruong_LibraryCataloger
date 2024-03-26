@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace LibraryCataloger.Data;
 
+//Single Responsibility Principle: BookEntity class is only responsible for creating my programs book object.
+//The BookRepository class is only responsible for handling methods related to the book object. These methods are creating a book object(CreateBook),
+//getting book by id(FindBookById), getting only books where InLibrary is true(GetInLibraryBooks), getting only book where ToBeReadList is true(GetToBeReadList)
+//updating book properties(UpdateBook) and deleting a book from the database(DeleteBook). If I were to add a Review feature methods relating to handling
+//reading, creating, updating, deleting, etc would be handled in a seperate class called ReviewRepository.
 public class BookRepository : IBookRepository
 {
     private readonly BookDbContext _context;
